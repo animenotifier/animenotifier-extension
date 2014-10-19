@@ -273,7 +273,7 @@ var animeUpdater = {
 		});
 
 		// Sort DOM elements
-		var lastElement = this.animeList[0];
+		var lastElement = this.animeList[0].element;
 		this.animeList.forEach(function(entry) {
 			entry.element.parentNode.insertBefore(entry.element, lastElement);
 			lastElement = entry.element.nextSibling;

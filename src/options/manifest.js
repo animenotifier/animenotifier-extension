@@ -163,7 +163,8 @@ this.manifest = {
 			"text": "You'll be mentioned here if you support this project.<br/><br/><ul class='donators'>" + 
 					"<li><div class='donation-amount'>10,00 €</div> <a href='http://anilist.co/user/drill' target='_blank'>drill</a> (Anilist)</li>" + 
 					"<li><div class='donation-amount'>7,35 €</div> <a href='http://anilist.co/user/Izzy' target='_blank'>Izzy</a> (Anilist)</li>" + 
-					"<li><div class='donation-amount'>5,00 €</div> <a href='http://anilist.co/user/Josh' target='_blank'>Josh Star</a> (Anilist Admin)</li>" + 
+					"<li><div class='donation-amount'>5,00 €</div> <a href='http://anilist.co/user/Josh' target='_blank'>Josh Star</a> (Anilist Admin)</li>" +
+					"<li><div class='donation-amount'>1,00 €</div> <a href='http://myanimelist.net/profile/Mr_SkiZZeX' target='_blank'>Mr_SkiZZeX</a> (MAL)</li>" +
 					"</ul>"
 		}
 	],
