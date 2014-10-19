@@ -22,15 +22,15 @@ this.manifest = {
 			"options": [
 				{
 					"value": "anilist.co",
-					"text": "Anilist (anilist.co)"
-				},
-				{
-					"value": "myanimelist.net",
-					"text" : "My Anime List (myanimelist.net)"
+					"text": "anilist.co"
 				},
 				{
 					"value": "hummingbird.me",
-					"text": "Hummingbird (hummingbird.me)"
+					"text": "hummingbird.me"
+				},
+				{
+					"value": "myanimelist.net",
+					"text" : "myanimelist.net"
 				}
 			]
 		},
