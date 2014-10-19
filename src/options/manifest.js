@@ -129,15 +129,15 @@ this.manifest = {
 			"options": [
 				{
 					"value": "nyaa.se",
-					"text": "Nyaa (nyaa.se)"
+					"text": "nyaa.se"
 				},
 				{
 					"value": "kissanime.com",
-					"text": "KissAnime (kissanime.com) ALPHA"
+					"text": "kissanime.com (ALPHA)"
 				},
 				{
 					"value": "shanaproject.com",
-					"text": "Shana Project (shanaproject.com) ALPHA"
+					"text": "shanaproject.com (ALPHA)"
 				}
 			]
 		},

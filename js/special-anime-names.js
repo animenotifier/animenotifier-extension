@@ -19,5 +19,8 @@ var specialAnimeSearchNames = {
 	"Psycho Pass Extended Edition",
 
 	"Hunter x Hunter (2011)":
-	"Hunter X Hunter"
+	"Hunter X Hunter",
+
+	"Trinity Seven: 7 nin no Mahoutsukai":
+	"Trinity Seven"
 };
