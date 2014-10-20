@@ -7,6 +7,8 @@ var settings = new Store("settings", {
 	"otherSearch": "",
 	"updateInterval": "5",
 	"maxEpisodeDifference": "1",
+	"sortBy": "airingDate",
+	"opacityBy": "airingDate",
 	"animeProvider": "nyaa.se",
 	"animeListProvider": "anilist.co"
 });

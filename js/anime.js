@@ -19,6 +19,8 @@ var animeUpdater = {
 		"otherSearch": "",
 		"updateInterval": "5",
 		"maxEpisodeDifference": "1",
+		"sortBy": "airingDate",
+		"opacityBy": "airingDate",
 		"animeProvider": "nyaa.se",
 		"animeListProvider": "anilist.co"
 	},
@@ -259,26 +261,65 @@ var animeUpdater = {
 			infoMatch = anichartAnimeInfoRegEx.exec(html);
 		}
 
+		// Check settings
+		if(typeof this.settings["sortBy"] == 'undefined')
+			this.settings["sortBy"] = "airingDate";
+
+		if(typeof this.settings["opacityBy"] == 'undefined')
+			this.settings["opacityBy"] = "airingDate";
+
+		// Pick sorting algorithm
+		var sortingAlgorithm = null;
+
+		switch(this.settings["sortBy"]) {
+			// By airing date
+			case "airingDate":
+				sortingAlgorithm = function(a, b) {
+					var aUndefined = false, bUndefined = false;
+
+					if(a.days == 0 && a.hours == 0 && a.minutes == 0)
+						aUndefined = true;
+
+					if(b.days == 0 && b.hours == 0 && b.minutes == 0)
+						bUndefined = true;
+
+					return (a.days - b.days) * 24 * 60 + (a.hours - b.hours) * 60 + (a.minutes - b.minutes) + aUndefined * 999999999 - bUndefined * 999999999;
+				}
+				break;
+
+			// Alphabetically
+			case "name":
+				sortingAlgorithm = function(a, b) {
+					return a.title.localeCompare(b.title);
+				}
+				break;
+
+			// Episode status
+			/*case "hasNewEpisodes":
+				sortingAlgorithm = function(a, b) {
+					if(a.hasNewEpisodes > b.hasNewEpisodes)
+						return 1;
+
+					if(a.hasNewEpisodes < b.hasNewEpisodes)
+						return -1;
+
+					return 0;
+				}
+				break;*/
+		}
+
 		// The actual sorting
-		this.animeList.sort(function(a, b) {
-			var aUndefined = false, bUndefined = false;
-
-			if(a.days == 0 && a.hours == 0 && a.minutes == 0)
-				aUndefined = true;
-
-			if(b.days == 0 && b.hours == 0 && b.minutes == 0)
-				bUndefined = true;
-
-			return (a.days - b.days) * 24 * 60 + (a.hours - b.hours) * 60 + (a.minutes - b.minutes) + aUndefined * 999999999 - bUndefined * 999999999;
-		});
+		if(sortingAlgorithm != null)
+			this.animeList.sort(sortingAlgorithm);
 
 		// Sort DOM elements
+		var opacityEnabled = this.settings["opacityBy"] == "airingDate";
 		var lastElement = this.animeList[0].element;
 		this.animeList.forEach(function(entry) {
 			entry.element.parentNode.insertBefore(entry.element, lastElement);
 			lastElement = entry.element.nextSibling;
 
-			if(entry.days != 0 || entry.hours != 0 || entry.minutes != 0) {
+			if(opacityEnabled && (entry.days != 0 || entry.hours != 0 || entry.minutes != 0)) {
 				var factor = entry.daysRounded; // * 24 * 60 + entry.hours * 60 + entry.minutes;
 				entry.element.style.opacity = Math.max(1.0 - (factor * factor) / 10.0, 0.2);
 			}

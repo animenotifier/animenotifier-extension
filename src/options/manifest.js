@@ -122,6 +122,48 @@ this.manifest = {
 		},
 		{
 			"tab": i18n.get("Advanced"),
+			"group": "Anime List",
+			"name": "sortBy",
+			"type": "popupButton",
+			"label": "Sort by:",
+			"options": [
+				{
+					"value": "airingDate",
+					"text": "Airing date"
+				},
+				{
+					"value": "name",
+					"text": "Name (alphabetically)"
+				},
+				/*{
+					"value": "hasNewEpisodes",
+					"text": "Status (has new episodes)"
+				},*/
+				{
+					"value": "",
+					"text": "No sorting"
+				}
+			]
+		},
+		{
+			"tab": i18n.get("Advanced"),
+			"group": "Anime List",
+			"name": "opacityBy",
+			"type": "popupButton",
+			"label": "Opacity by:",
+			"options": [
+				{
+					"value": "airingDate",
+					"text": "Airing date"
+				},
+				{
+					"value": "",
+					"text": "None (full opacity)"
+				}
+			]
+		},
+		{
+			"tab": i18n.get("Advanced"),
 			"group": "Backend",
 			"name": "animeProvider",
 			"type": "popupButton",
@@ -176,6 +218,8 @@ this.manifest = {
 		[
 			"updateInterval",
 			"maxEpisodeDifference",
+			"sortBy",
+			"opacityBy",
 			"animeProvider"
 		]
 	]
