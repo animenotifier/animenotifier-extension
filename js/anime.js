@@ -71,18 +71,29 @@ var animeUpdater = {
 		this.userAnimeListURL = this.animeListProvider.url + userName + this.animeListProvider.urlSuffix;
 		this.animeListCreated = false;
 
-		var req = new XMLHttpRequest();
-		req.open("GET", this.userAnimeListApiURL, true);
-		req.responseType = 'text';
-		req.onload = this.showAnimeList.bind(this);
-		if(this.animeListProvider.beforeSend) {
-			// allow anime-list-providers to modify request object before sending
-			this.animeListProvider.beforeSend(req);
-		}
-		req.send(null);
+		// Authorization needed?
+		if(this.animeListProvider.authorize)
+			this.animeListProvider.authorize(this.sendRequestFunc.bind(this));
+		else
+			this.sendRequestFunc();
 
 		// Sort please
 		this.requestAniChart();
+	},
+
+	// Send the actual request
+	sendRequestFunc: function() {
+		var req = new XMLHttpRequest();
+		req.onload = this.showAnimeList.bind(this);
+		
+		if(this.animeListProvider.overrideSend) {
+			// Allow anime list providers to modify request object
+			this.animeListProvider.overrideSend(req);
+		} else {
+			req.open("GET", this.userAnimeListApiURL, true);
+			req.responseType = 'text';
+			req.send(null);
+		}
 	},
 
 	// Parse anime list
@@ -207,6 +218,10 @@ var animeUpdater = {
 
 	// Sort anime list
 	sortAnimeList: function(html) {
+		// Empty list?
+		if(this.animeList.length == 0)
+			return;
+
 		var anichartAnimeInfoRegEx = /<div class="anime_info_sml">/g;
 		var anichartTitleRegEx = /class="title_sml[^"']*"><a href=["'][^"']*["'] target="_blank">([^<]+)<\/a>/;
 		var daysRegEx = /<span class="cd_day">([0-9]{0,3})<\/span>/;

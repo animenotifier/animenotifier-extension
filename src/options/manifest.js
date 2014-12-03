@@ -32,6 +32,10 @@ this.manifest = {
 					"value": "myanimelist.net",
 					"text" : "myanimelist.net"
 				}
+				/*{
+					"value": "anime-planet.com",
+					"text" : "anime-planet.com"
+				}*/
 			]
 		},
 		/*{
@@ -207,6 +211,7 @@ this.manifest = {
 					"<li><div class='donation-amount'>7,35 €</div> <a href='http://anilist.co/user/Izzy' target='_blank'>Izzy</a> (Anilist)</li>" + 
 					"<li><div class='donation-amount'>5,00 €</div> <a href='http://anilist.co/user/Josh' target='_blank'>Josh Star</a> (Anilist Admin)</li>" +
 					"<li><div class='donation-amount'>1,00 €</div> <a href='http://myanimelist.net/profile/Mr_SkiZZeX' target='_blank'>Mr_SkiZZeX</a> (MAL)</li>" +
+					"<li><div class='donation-amount'>1,00 €</div> <a href='http://myanimelist.net/profile/manolito62' target='_blank'>manolito62</a> (MAL)</li>" +
 					"</ul>"
 		}
 	],

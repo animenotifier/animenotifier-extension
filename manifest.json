@@ -1,7 +1,7 @@
 {
   "name": "Anime Release Notifier",
   "short_name": "Anime Notifier",
-  "version": "0.2.9",
+  "version": "0.3.0",
   "manifest_version": 2,
   "description": "Notifies you when there's a new episode of your favourite anime available.",
   "homepage_url": "http://blitzprog.org/projects",
@@ -25,6 +25,7 @@
     "http://kissanime.com/",
     "http://anilist.co/",
     "http://myanimelist.net/",
+    "http://www.anime-planet.com/",
     "http://old.anichart.net/",
     "https://hummingbirdv1.p.mashape.com/"
   ],

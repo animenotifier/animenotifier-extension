@@ -14,3 +14,4 @@ Installation:
 Forum:
 - http://anilist.co/forum_post?id=1297
 - http://myanimelist.net/forum/?topicid=1175519
+- https://forums.hummingbird.me/t/chrome-extension-anime-release-notifier-hb-mal-anilist/16787
