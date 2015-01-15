@@ -1,1 +1,1 @@
-var animeBackends = {};
+var backends = {};

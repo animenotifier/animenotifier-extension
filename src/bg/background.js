@@ -1,5 +1,4 @@
 // if you checked "fancy-settings" in extensionizr.com, uncomment this lines
-
 var settings = new Store("settings", {
 	"userName": "",
 	"quality": "",
@@ -26,6 +25,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, btnIdx
 	}
 });
 
+// Background update fuction
 var backgroundUpdate = function() {
 	//localStorage["anime.Black Bullet"] = {latestEpisodeNumber: 0};
 	animeUpdater.requestAnimeList(settings.toObject(), function() {
@@ -48,19 +48,3 @@ document.addEventListener('DOMContentLoaded', function() {
 		backgroundUpdate();
 	}, 60 * 1000 * updateInterval);
 });
-
-//;
-
-/*animeUpdater.animeList.forEach(function(entry) {
-			console.log(entry.title + " > " + entry.latestEpisodeNumber);
-		});*/
-
-		/*chrome.notifications.create("", {
-			type: "list",
-			title: "New anime episodes",
-			message: "",
-			iconUrl: "/icons/icon128.png",
-			items: [{ title: entry.title, message: entry.latestEpisodeNumber}]
-		}, function(notificationId) {
-			// ...
-		});*/

@@ -1,4 +1,4 @@
-animeBackends["nyaa.se"] = {
+backends["nyaa.se"] = {
 	host: "www.nyaa.se",
 	episodeRegEx: /[ _]-[ _]([0-9]{1,3})v?\d?[ _][^a-zA-Z0-9]/,
 
@@ -107,7 +107,7 @@ animeBackends["nyaa.se"] = {
 		};
 
 		// Fetch image
-		animeUpdater.animeListProvider.queryImage(anime, function(coverUrl) {
+		animeUpdater.listProvider.getImage(anime, function(coverUrl) {
 			notificationOptions.iconUrl = coverUrl;
 			anime.imageUrl = coverUrl;
 

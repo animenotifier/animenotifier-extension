@@ -1,4 +1,4 @@
-animeBackends["shanaproject.com"] = {
+backends["shanaproject.com"] = {
 	host: "shanaproject.com",
 
 	process: function(anime) {
@@ -41,7 +41,7 @@ animeBackends["shanaproject.com"] = {
 		anime.element.innerHTML += episodesHTML;
 
 		// Fetch image
-		animeUpdater.animeListProvider.queryImage(anime, function(coverUrl) {
+		animeUpdater.listProvider.getImage(anime, function(coverUrl) {
 			anime.imageUrl = coverUrl;
 
 			var animeImg = document.createElement("img");

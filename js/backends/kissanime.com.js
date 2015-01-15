@@ -1,4 +1,4 @@
-animeBackends["kissanime.com"] = {
+backends["kissanime.com"] = {
 	host: "kissanime.com",
 
 	process: function(anime) {
@@ -23,7 +23,7 @@ animeBackends["kissanime.com"] = {
 		req.send(null);
 
 		// Fetch image
-		animeUpdater.animeListProvider.queryImage(anime, function(coverUrl) {
+		animeUpdater.listProvider.getImage(anime, function(coverUrl) {
 			anime.imageUrl = coverUrl;
 
 			var animeImg = document.createElement("img");

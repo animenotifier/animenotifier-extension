@@ -1,11 +1,12 @@
 listProviders["anilist.co"] = {
 	host: "anilist.co",
-	url: "http://anilist.co/animelist/",
-	urlSuffix: "",
-	apiUrl: "http://anilist.co/api/user/",
-	apiUrlSuffix: "/animelist",
+	url: "http://anilist.co/animelist/{userName}",
+	apiURL: "http://anilist.co/api/user/{userName}/animelist",
+
+	// Access token
 	accessToken: "",
 
+	// Authorize
 	authorize: function(callBack) {
 		var authReq = new XMLHttpRequest();
 		authReq.open("POST", "https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=akyoto-wbdln&client_secret=zS3MidMPmolyHRYNOvSR1", true);
@@ -18,14 +19,22 @@ listProviders["anilist.co"] = {
 		authReq.send(null);
 	},
 
-	overrideSend: function(req) {
-		req.open("GET", animeUpdater.userAnimeListApiURL + "?access_token=" + this.accessToken, true);
-		req.responseType = "json";
-		//req.setRequestHeader("access_token", this.accessToken);
-		req.send(null);
+	// Send request
+	sendRequest: function(callBack) {
+		this.authorize(function() {
+			var requestURL = this.apiURL.replace("{userName}", animeUpdater.settings["userName"]) + "?access_token=" + this.accessToken;
+			console.log(requestURL);
+
+			var req = new XMLHttpRequest();
+			req.onload = callBack;
+			req.open("GET", requestURL, true);
+			req.responseType = "json";
+			req.send(null);
+		}.bind(this));
 	},
 
-	overrideParse: function(data) {
+	// Get anime list
+	getList: function(data) {
 		return data.lists.watching.map(function(entry) {
 			return {
 				id: entry.anime.id,
@@ -44,7 +53,13 @@ listProviders["anilist.co"] = {
 		});
 	},
 
-	queryImage: function(entry, callBack) {
+	// Get anime list URL
+	getListURL: function(userName) {
+		return this.url.replace("{userName}", userName);
+	},
+
+	// Get image
+	getImage: function(entry, callBack) {
 		callBack(entry.image);
 	}
 };
