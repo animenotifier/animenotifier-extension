@@ -10,7 +10,7 @@ this.manifest = {
 			"id": "userName",
 			"type": "text",
 			"label": "Username:",
-			"text": "Your MAL username or anilist.co display name"
+			"text": "Your username on MAL, HB or Anilist"
 		},
 		{
 			"tab": i18n.get("Basic"),
