@@ -49,7 +49,7 @@ var animeUpdater = {
 		if(typeof this.settings["animeProvider"] == 'undefined')
 			this.settings["animeProvider"] = "nyaa.se";
 
-		this.animeListProvider = animeListProviders[this.settings["animeListProvider"]];
+		this.animeListProvider = listProviders[this.settings["animeListProvider"]];
 		this.animeBackend = animeBackends[this.settings["animeProvider"]];
 		this.optionsURL = chrome.extension.getURL("src/options/index.html");
 

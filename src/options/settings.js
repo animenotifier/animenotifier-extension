@@ -2,7 +2,7 @@ window.addEvent("domready", function () {
 	// Option 1: Use the manifest:
 	new FancySettings.initWithManifest(function (settings) {
 		var updateURL = function() {
-			var url = animeListProviders[settings.manifest.animeListProvider.element.value].url + settings.manifest.userName.element.value;
+			var url = listProviders[settings.manifest.animeListProvider.element.value].url + settings.manifest.userName.element.value;
 			settings.manifest.previewURL.element.innerHTML = "<a href='" + url + "' target='_blank'>" + url + "</a>";
 		};
 
