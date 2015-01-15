@@ -25,16 +25,16 @@ listProviders["anilist.co"] = {
 			var requestURL = this.apiURL.replace("{userName}", animeUpdater.settings["userName"]) + "?access_token=" + this.accessToken;
 			console.log(requestURL);
 
-			var req = new XMLHttpRequest();
-			req.onload = callBack;
-			req.open("GET", requestURL, true);
-			req.responseType = "json";
-			req.send(null);
+			$.getJSON(requestURL, callBack);
 		}.bind(this));
 	},
 
 	// Get anime list
 	getList: function(data) {
+		// Some users don't have a watching list
+		if(typeof data.lists.watching === 'undefined')
+			return [];
+
 		return data.lists.watching.map(function(entry) {
 			return {
 				id: entry.anime.id,

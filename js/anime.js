@@ -1,8 +1,11 @@
 var animeUpdater = {
+	// Components
+	listProvider: null,
+	airingTimeProvider: null,
+	backend: null,
+
 	// Fields
 	settings: null,
-	listProvider: null,
-	backend: null,
 	optionsURL: null,
 	animeList: null,
 
@@ -36,6 +39,9 @@ var animeUpdater = {
 		// Get backend
 		this.backend = backends[this.settings["animeProvider"]];
 
+		// Get airing time provider
+		this.airingTimeProvider = airingTimeProviders["old.anichart.net"];
+
 		// Debug
 		console.log(this.listProvider);
 		console.log(this.backend);
@@ -43,29 +49,37 @@ var animeUpdater = {
 		// Loading message
 		this.loadingMessage();
 
-		// Request
+		// List request
 		this.requestStartTime = performance.now();
 		this.listProvider.sendRequest(this.receiveAnimeList.bind(this));
+
+		// Airing times request
+		this.airingTimeProvider.sendRequest(this.receiveAiringTimes.bind(this));
 	},
 
 	// Receive anime list
-	receiveAnimeList: function(e) {
+	receiveAnimeList: function(data) {
 		this.requestDuration = performance.now() - this.requestStartTime;
 		console.log(this.requestDuration / 1000);
 
-		// Status code
-		if(e.target.status != 200) {
-			console.log(e.target.statusText);
-		}
-
 		// Parse anime list
-		this.animeList = this.listProvider.getList(e.target.response);
+		this.animeList = this.listProvider.getList(data);
 		this.buildHTML();
+	},
+
+	// Receive airing times
+	receiveAiringTimes: function() {
+		console.log("Received airing times");
 	},
 
 	// Build HTML
 	buildHTML: function() {
 		var userName = this.settings["userName"];
+
+		// Reset badge text
+		chrome.browserAction.setBadgeText({
+			text: ""
+		});
 
 		// List entries available?
 		if(this.animeList.length == 0) {
@@ -74,14 +88,24 @@ var animeUpdater = {
 				"Are you sure the <a href='" + this.optionsURL + "' target='_blank'>options</a> are correctly set up?");
 		} else {
 			$(document.body).html("");
+
+			// Build anime list
+			this.buildList();
 		}
 
-		// Reset badge text
-		chrome.browserAction.setBadgeText({
-			text: ""
-		});
+		// Footer
+		this.buildFooter();
 
-		// Create an element for ach anime
+		// Get airing time for each anime
+		this.airingTimeProvider.process(this.animeList);
+
+		// Sort
+		this.sortList();
+	},
+
+	// Build list
+	buildList: function() {
+		// Create an element for each anime
 		this.animeList.forEach(function(anime) {
 			// Create link
 			anime.element = document.createElement("a");
@@ -95,9 +119,6 @@ var animeUpdater = {
 			// Backend
 			this.backend.process(anime);
 		}.bind(this));
-
-		// Footer
-		this.buildFooter();
 	},
 
 	// Build footer
@@ -110,12 +131,66 @@ var animeUpdater = {
 		$(footer).html(
 			"<a href='" + this.listProvider.getListURL(userName) + "' target='_blank' title='Profile'>" + userName + "</a> | " +
 			this.settings["animeProvider"] + 
-			//" | " + (this.requestDuration / 1000).toFixed(2) + " s" +
 			" <a href='http://anichart.net/airing' target='_blank' title='Chart'><img src='http://blitzprog.org/images/anime-release-notifier/chart.png' alt='Chart'/></a>" +
 			" <a href='" + this.optionsURL + "' target='_blank' title='Options'><img src='http://blitzprog.org/images/anime-release-notifier/settings.png' alt='Options'/></a>"
 		); 
 							
 		document.body.appendChild(footer);
+	},
+
+	// Sort list
+	sortList: function() {
+		// Empty list?
+		if(this.animeList.length == 0)
+			return;
+
+		// Pick sorting algorithm
+		var sortingAlgorithm = this.getSortingAlgorithm(this.settings["sortBy"]);
+
+		// The actual sorting
+		if(sortingAlgorithm != null)
+			this.animeList.sort(sortingAlgorithm);
+
+		// Sort DOM elements and apply opacity
+		var opacityEnabled = this.settings["opacityBy"] == "airingDate";
+		var lastElement = this.animeList[0].element;
+
+		this.animeList.forEach(function(entry) {
+			entry.element.parentNode.insertBefore(entry.element, lastElement);
+			lastElement = entry.element.nextSibling;
+
+			if(opacityEnabled && (entry.days != 0 || entry.hours != 0 || entry.minutes != 0)) {
+				var factor = entry.daysRounded;
+				entry.element.style.opacity = Math.max(1.0 - (factor * factor) / 10.0, 0.2);
+			}
+		});
+	},
+
+	// Pick sorting algorithm
+	getSortingAlgorithm: function(sortBy) {
+		console.log("Sort by: " + sortBy);
+
+		switch(sortBy) {
+			// By airing date
+			case "airingDate":
+				return function(a, b) {
+					var aUndefined = false, bUndefined = false;
+
+					if(a.days == 0 && a.hours == 0 && a.minutes == 0)
+						aUndefined = true;
+
+					if(b.days == 0 && b.hours == 0 && b.minutes == 0)
+						bUndefined = true;
+
+					return (a.days - b.days) * 24 * 60 + (a.hours - b.hours) * 60 + (a.minutes - b.minutes) + aUndefined * 999999999 - bUndefined * 999999999;
+				}
+
+			// Alphabetically
+			case "name":
+				return function(a, b) {
+					return a.title.localeCompare(b.title);
+				}
+		}
 	},
 
 	// Loading message
