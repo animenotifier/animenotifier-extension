@@ -41,7 +41,7 @@ listProviders["anilist.co"] = {
 				title: entry.anime.title_romaji,
 				originalTitle: entry.anime.title_romaji,
 				image: entry.anime.image_url_lge,
-				watchedEpisodes: entry.episodes_watched,
+				watchedEpisodes: entry.episodes_watched ? entry.episodes_watched : 0,
 				nextEpisodeToWatch: entry.episodes_watched + 1,
 				maxEpisodes: entry.anime.total_episodes ? entry.anime.total_episodes : "-",
 				hasNewEpisodes: false,

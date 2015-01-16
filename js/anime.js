@@ -49,6 +49,9 @@ var animeUpdater = {
 		// Loading message
 		this.loadingMessage();
 
+		// Footer
+		this.buildFooter();
+
 		// List request
 		this.requestStartTime = performance.now();
 		this.listProvider.sendRequest(this.receiveAnimeList.bind(this));
@@ -195,6 +198,9 @@ var animeUpdater = {
 
 	// Loading message
 	loadingMessage: function() {
-		$(document.body).append("Loading anime list for: " + this.settings["userName"] + "<br>");
+		var $body = $(document.body);
+
+		//$body.append("Loading anime list for: <span class='userName'>" + this.settings["userName"] + "</span>");
+		$body.append("<div class='spinner'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
 	}
 };
