@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		updateInterval = 5;
 
 	// Update consistently
-	console.log("Interval: " + updateInterval);
 	window.setInterval(function() {
 		console.log("Updating anime list in the background...");
 		backgroundUpdate();

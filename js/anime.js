@@ -12,6 +12,9 @@ var animeUpdater = {
 	requestStartTime: null,
 	requestDuration: null,
 
+	qualityRegEx: /([0-9]{3,4})p[^a-zA-Z]/,
+	subsRegEx: /^\[([^\]]*)\]/,
+
 	// Request anime list
 	requestAnimeList: function() {
 		chrome.runtime.sendMessage({}, this.onSettingsReceived.bind(this));
@@ -19,8 +22,6 @@ var animeUpdater = {
 
 	// On settings received
 	onSettingsReceived: function(response) {
-		console.log(response);
-
 		// Overwrite my settings with the newly received settings from the background thread
 		this.settings = response;
 
@@ -40,11 +41,7 @@ var animeUpdater = {
 		this.backend = backends[this.settings["animeProvider"]];
 
 		// Get airing time provider
-		this.airingTimeProvider = airingTimeProviders["old.anichart.net"];
-
-		// Debug
-		console.log(this.listProvider);
-		console.log(this.backend);
+		this.airingTimeProvider = airingTimeProviders["anilist.co"];
 
 		// Loading message
 		this.loadingMessage();
@@ -55,9 +52,6 @@ var animeUpdater = {
 		// List request
 		this.requestStartTime = performance.now();
 		this.listProvider.sendRequest(this.receiveAnimeList.bind(this));
-
-		// Airing times request
-		this.airingTimeProvider.sendRequest(this.receiveAiringTimes.bind(this));
 	},
 
 	// Receive anime list
@@ -68,11 +62,27 @@ var animeUpdater = {
 		// Parse anime list
 		this.animeList = this.listProvider.getList(data);
 		this.buildHTML();
+
+		// Airing times request
+		$(document).ajaxStop(function() {
+			$(this).unbind("ajaxStop"); //prevent running again when other calls finish
+			animeUpdater.airingTimeProvider.sendRequest(animeUpdater.receiveAiringTimes.bind(animeUpdater));
+		});
 	},
 
 	// Receive airing times
 	receiveAiringTimes: function() {
-		console.log("Received airing times");
+		if(this.animeList == null) {
+			$(document).ajaxStop(function() {
+				$(this).unbind("ajaxStop"); //prevent running again when other calls finish
+				animeUpdater.receiveAiringTimes();
+			});
+			return;
+		}
+
+		this.animeList.forEach(function(anime) {
+			this.airingTimeProvider.getAiringDate(anime);
+		}.bind(this));
 	},
 
 	// Build HTML
@@ -98,9 +108,6 @@ var animeUpdater = {
 
 		// Footer
 		this.buildFooter();
-
-		// Get airing time for each anime
-		this.airingTimeProvider.process(this.animeList);
 
 		// Sort
 		this.sortList();
@@ -171,8 +178,6 @@ var animeUpdater = {
 
 	// Pick sorting algorithm
 	getSortingAlgorithm: function(sortBy) {
-		console.log("Sort by: " + sortBy);
-
 		switch(sortBy) {
 			// By airing date
 			case "airingDate":
@@ -202,5 +207,89 @@ var animeUpdater = {
 
 		//$body.append("Loading anime list for: <span class='userName'>" + this.settings["userName"] + "</span>");
 		$body.append("<div class='spinner'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
+	},
+
+	// TODO: Move this somewhere else
+	// Query possible anime options
+	queryPossibleAnimeOptions: function(animeTitle, subsProvider, callback) {
+		var customSearchTitle = localStorage["store.settings." + animeTitle + ":search"];
+
+		if(customSearchTitle)
+			customSearchTitle = customSearchTitle.replace(/"/g, "");
+
+		var urlObject = {};
+		backends["nyaa.se"].getURLs(customSearchTitle ? customSearchTitle : animeTitle, "", subsProvider, urlObject);
+
+		var req = new XMLHttpRequest();
+		req.overrideMimeType('text/xml');
+		req.open("GET", urlObject.rssUrl, true);
+		req.onload = function(e) {
+			var qualities = [
+				{
+					"value": "",
+					"text": "*"
+				}
+			];
+
+			var subs = [
+				{
+					"value": "",
+					"text": "*"
+				}
+			];
+
+			var qualitiesFound = {};
+			var subsFound = {};
+
+			// Find quality and subs which are available
+			var itemList = e.target.responseXML.querySelectorAll("item");
+			[].forEach.call(
+				itemList, 
+				function(item) {
+					var title = item.getElementsByTagName("title")[0].innerHTML;
+
+					// Quality
+					var match = animeUpdater.qualityRegEx.exec(title);
+					if(match != null) {
+						var quality = match[1];
+
+						if(!(quality in qualitiesFound)) {
+							qualities.push({
+								"value": quality,
+								"text" : quality + "p"
+							});
+
+							qualitiesFound[quality] = true;
+						}
+					}
+
+					// Subs
+					var match = animeUpdater.subsRegEx.exec(title);
+					if(match != null) {
+						var sub = match[1];
+
+						if(!(sub in subsFound)) {
+							subs.push({
+								"value": sub,
+								"text" : sub
+							});
+
+							subsFound[sub] = true;
+						}
+					}
+				}
+			);
+
+			qualities.sort(function(a, b) {
+				return parseInt(a["value"]) - parseInt(b["value"]);
+			});
+
+			subs.sort(function(a, b) {
+				return a["text"].localeCompare(b["text"]);
+			});
+
+			callback(animeTitle, qualities, subs);
+		};
+		req.send(null);
 	}
 };

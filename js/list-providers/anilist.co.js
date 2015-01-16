@@ -4,17 +4,20 @@ listProviders["anilist.co"] = {
 	apiURL: "http://anilist.co/api/user/{userName}/animelist",
 
 	// Access token
-	accessToken: "",
+	accessToken: null,
 
 	// Authorize
 	authorize: function(callBack) {
+		// TODO: Cache
 		var authReq = new XMLHttpRequest();
 		authReq.open("POST", "https://anilist.co/api/auth/access_token?grant_type=client_credentials&client_id=akyoto-wbdln&client_secret=zS3MidMPmolyHRYNOvSR1", true);
 		authReq.responseType = 'json';
 		authReq.onload = function(e) {
 			var data = e.target.response;
 			this.accessToken = data.access_token;
-			callBack();
+
+			if(typeof callBack !== 'undefined')
+				callBack();
 		}.bind(this);
 		authReq.send(null);
 	},
@@ -23,7 +26,6 @@ listProviders["anilist.co"] = {
 	sendRequest: function(callBack) {
 		this.authorize(function() {
 			var requestURL = this.apiURL.replace("{userName}", animeUpdater.settings["userName"]) + "?access_token=" + this.accessToken;
-			console.log(requestURL);
 
 			$.getJSON(requestURL, callBack);
 		}.bind(this));

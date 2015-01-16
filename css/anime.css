@@ -104,3 +104,7 @@ body {
 	border: 1px solid blue;
 	color: rgb(0, 0, 0) !important;
 }
+
+.date-in-the-past {
+	opacity: 0.5;
+}
