@@ -56,8 +56,8 @@ airingTimeProviders["anilist.co"] = {
 				var timeDiff = airingDate.getTime() - now.getTime();
 
 				anime.days = parseInt(timeDiff / (24 * 3600 * 1000));
-				anime.hours = parseInt(timeDiff / (3600 * 1000));
-				anime.minutes = parseInt(timeDiff / 1000);
+				anime.hours = parseInt(timeDiff / (3600 * 1000)) % 24;
+				anime.minutes = parseInt(timeDiff / 1000) % 60;
 				anime.daysRounded = Math.round(anime.days + (anime.hours / 24.0));
 
 				if(anime.days == 0) {
