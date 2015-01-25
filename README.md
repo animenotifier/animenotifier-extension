@@ -8,6 +8,9 @@ Supports anime lists from:
 - myanimelist.net
 - hummingbird.me
 
+Website:
+- http://animereleasenotifier.com/
+
 Installation:
 - https://chrome.google.com/webstore/detail/anime-release-notifier/hajchfikckiofgilinkpifobdbiajfch
 
