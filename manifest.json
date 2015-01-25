@@ -1,7 +1,7 @@
 {
 	"name": "Anime Release Notifier",
 	"short_name": "Anime Notifier",
-	"version": "0.3.3",
+	"version": "0.3.4",
 	"manifest_version": 2,
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "http://animereleasenotifier.com/",
@@ -20,14 +20,15 @@
 	"options_page": "src/options/index.html",
 	"permissions": [
 		"notifications",
-		"http://www.nyaa.se/",
-		"http://www.shanaproject.com/",
-		"http://kissanime.com/",
+
 		"http://anilist.co/",
 		"http://myanimelist.net/",
 		"http://www.anime-planet.com/",
-		"http://old.anichart.net/",
 		"https://hummingbirdv1.p.mashape.com/"
+
+		"http://www.nyaa.se/",
+		"http://www.shanaproject.com/",
+		"http://kissanime.com/",
 	],
 	"browser_action": {
 		"default_icon": "icons/icon128.png",
