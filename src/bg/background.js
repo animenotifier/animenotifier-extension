@@ -27,7 +27,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, btnIdx
 
 // Background update fuction
 var backgroundUpdate = function() {
-	//localStorage["anime.Black Bullet"] = {latestEpisodeNumber: 0};
+	//localStorage["anime.Shirobako"] = {latestEpisodeNumber: 0};
 	animeUpdater.requestAnimeList(settings.toObject(), function() {
 		
 	});
