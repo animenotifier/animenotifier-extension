@@ -15,6 +15,8 @@ var animeUpdater = {
 	qualityRegEx: /([0-9]{3,4})p[^a-zA-Z]/,
 	subsRegEx: /^\[([^\]]*)\]/,
 
+	notificationIdToLink: {},
+
 	// Request anime list
 	requestAnimeList: function() {
 		chrome.runtime.sendMessage({}, this.onSettingsReceived.bind(this));
@@ -24,6 +26,7 @@ var animeUpdater = {
 	onSettingsReceived: function(response) {
 		// Overwrite my settings with the newly received settings from the background thread
 		this.settings = response;
+		console.log(this.settings);
 
 		// Get URL for the options
 		this.optionsURL = chrome.extension.getURL("src/options/index.html");

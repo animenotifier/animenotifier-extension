@@ -100,10 +100,12 @@ backends["nyaa.se"] = {
 		var notificationOptions = {
 			type: "basic",
 			title: anime.title + " [Ep. " + anime.latestEpisodeNumber + "]",
+			priority: 1,
 			message: "New episode available\n",
 			buttons: [{
 				title: "Download"
 			}]
+			// iconUrl is set later
 		};
 
 		// Fetch image
@@ -125,12 +127,10 @@ backends["nyaa.se"] = {
 
 			// Do we have latest episode info?
 			if(anime.latestEpisodeNumber != -1) {
-				//console.log(anime.title + "...");
 				var key = "anime." + anime.title;
 				var cached = localStorage.getObject(key);
-				//console.log(cached);
 
-				if(typeof(cached) != "undefined" && cached != null) {
+				if(typeof(cached) != "undefined" && cached !== null) {
 					var latestEpisodeCached = parseInt(cached.latestEpisodeNumber);
 					//console.log(latestEpisodeCached);
 

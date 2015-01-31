@@ -27,10 +27,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, btnIdx
 
 // Background update fuction
 var backgroundUpdate = function() {
-	//localStorage["anime.Shirobako"] = {latestEpisodeNumber: 0};
-	animeUpdater.requestAnimeList(settings.toObject(), function() {
-		
-	});
+	animeUpdater.onSettingsReceived(settings.toObject());
 };
 
 document.addEventListener('DOMContentLoaded', function() {
