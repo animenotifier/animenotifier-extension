@@ -22,6 +22,9 @@ listProviders["hummingbird.me"] = {
 	// Get anime list
 	getList: function(data) {
 		return data.map(function(entry) {
+			if(entry.status != "currently-watching")
+				return null;
+
 			return {
 				id: entry.anime.id,
 				title: entry.anime.title,
@@ -36,7 +39,9 @@ listProviders["hummingbird.me"] = {
 				hours: 0,
 				minutes: 0
 			};
-		});
+		}).filter(function(n) {
+			return n != undefined;
+		}); ;
 	},
 
 	// Get anime list URL
