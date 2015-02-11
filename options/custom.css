@@ -22,18 +22,11 @@
 	content: ":";
 }
 
-#userName {
+#arnUserName {
 	background-image: url(http://blitzprog.org/images/icons/user.png);
 	background-repeat: no-repeat;
 	padding-left: 26px;
 	background-position: 5px center;
-}
-
-#animeListProvider {
-	background-image: url(http://blitzprog.org/images/icons/animelist.png);
-	background-repeat: no-repeat;
-	padding-left: 22px;
-	background-position: 4px center;
 }
 
 .list-box {

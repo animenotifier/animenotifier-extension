@@ -1,15 +1,8 @@
 // if you checked "fancy-settings" in extensionizr.com, uncomment this lines
 var settings = new Store("settings", {
-	"userName": "",
-	"quality": "",
-	"subs": "",
-	"otherSearch": "",
-	"updateInterval": "5",
-	"maxEpisodeDifference": "1",
-	"sortBy": "airingDate",
-	"opacityBy": "airingDate",
-	"animeProvider": "nyaa.se",
-	"animeListProvider": "anilist.co"
+	"arnUserName": "",
+	"updateInterval": "10",
+	"maxEpisodeDifference": "1"
 });
 
 //example of using a message handler from the inject scripts
@@ -36,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Get update interval
 	var updateInterval = parseInt(settings.toObject()["updateInterval"]);
 	if(isNaN(updateInterval) || updateInterval < 1)
-		updateInterval = 5;
+		updateInterval = 10;
 
 	// Update consistently
 	window.setInterval(function() {
