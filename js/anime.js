@@ -1,10 +1,11 @@
 var animeUpdater = {
 	settings: null,
 	optionsUrl: null,
+	notificationIdToLink: {},
 	
 	// Request anime list
 	requestAnimeList: function() {
-		chrome.runtime.sendMessage({}, this.onSettingsReceived.bind(this));
+		chrome.runtime.sendMessage({intent: "getSettings"}, this.onSettingsReceived.bind(this));
 	},
 
 	// Build footer
@@ -41,12 +42,41 @@ var animeUpdater = {
 			return;
 		}
 
+		$animeList = $("#anime-list");
+		$animeList.html("<div class='loading'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
+
 		$.getJSON("https://animereleasenotifier.com/api/animelist/" + userName, function(json) {
-			var animeList = new AnimeList(json, $("#anime-list"));
+			var animeList = new AnimeList(json, $animeList, parseInt(this.settings["maxEpisodeDifference"]), function(anime) {
+				// Notification options
+				var notificationOptions = {
+					type: "basic",
+					title: anime.title + " [Ep. " + anime.episodes.available + "]",
+					iconUrl: anime.image,
+					priority: 1,
+					message: "New episode available\n",
+					buttons: [{
+						title: "View"
+					}]
+				};
+
+				// Display notification
+				chrome.notifications.create("", notificationOptions, function(notificationId) {
+					// When the notification is created we receive a notification ID.
+					// Store the link for that ID in a global map
+					animeUpdater.notificationIdToLink[notificationId] = anime.actionUrl;
+
+					chrome.runtime.sendMessage({
+						intent: "setLink",
+						notificationId: notificationId,
+						link: anime.actionUrl
+					});
+
+				});
+			});
 
 			// Set number next to extension icon
 			chrome.browserAction.setBadgeText({
-				text: animeList.newCount.toString()
+				text: animeList.newCount != 0 ? animeList.newCount.toString() : ''
 			});
 
 			// Footer

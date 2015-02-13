@@ -1,21 +1,8 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
+// Settings
 var settings = new Store("settings", {
 	"arnUserName": "",
 	"updateInterval": "10",
 	"maxEpisodeDifference": "1"
-});
-
-//example of using a message handler from the inject scripts
-chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	//chrome.pageAction.show(sender.tab.id);
-	sendResponse(settings.toObject());
-});
-
-chrome.notifications.onButtonClicked.addListener(function(notificationId, btnIdx) {
-	if(btnIdx === 0) {
-		var link = animeUpdater.notificationIdToLink[notificationId];
-		window.open(link);
-	}
 });
 
 // Background update fuction
@@ -23,6 +10,29 @@ var backgroundUpdate = function() {
 	animeUpdater.onSettingsReceived(settings.toObject());
 };
 
+// Send settings to the frontend
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+	if(request.intent == "getSettings") {
+		sendResponse(settings.toObject());
+	} else if(request.intent == "setLink") {
+		animeUpdater.notificationIdToLink[request.notificationId] = request.link;
+	}
+});
+
+// Notification: Button click
+chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonId) {
+	if(buttonId === 0) {
+		var link = animeUpdater.notificationIdToLink[notificationId];
+		window.open(link);
+	}
+});
+
+chrome.alarms.onAlarm.addListener(function (alarm) {
+	console.log("Updating anime list in the background...");
+	backgroundUpdate();
+});
+
+// Init
 document.addEventListener('DOMContentLoaded', function() {
 	backgroundUpdate();
 
@@ -32,8 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		updateInterval = 10;
 
 	// Update consistently
-	window.setInterval(function() {
-		console.log("Updating anime list in the background...");
-		backgroundUpdate();
-	}, 60 * 1000 * updateInterval);
+	chrome.alarms.create("ARN Alarm", {
+		periodInMinutes: updateInterval
+	});
 });

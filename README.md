@@ -10,12 +10,12 @@ Supports anime lists from:
 - hummingbird.me
 
 Website:
-- http://animereleasenotifier.com/
+- https://animereleasenotifier.com/
 
 Installation:
 - https://chrome.google.com/webstore/detail/anime-release-notifier/hajchfikckiofgilinkpifobdbiajfch
 
 Forum:
-- http://anilist.co/forum_post?id=1297
+- http://anilist.co/forum/thread/64
 - http://myanimelist.net/forum/?topicid=1175519
-- https://forums.hummingbird.me/t/chrome-extension-anime-release-notifier-hb-mal-anilist/16787
+- https://forums.hummingbird.me/t/16787

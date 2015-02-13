@@ -14,13 +14,14 @@
 	},
 	"background": {
 		"page": "html/background.html",
-		"persistent": true
+		"persistent": false
 	},
 	"options_page": "options/index.html",
 	"content_security_policy":"script-src 'self' https://animereleasenotifier.com; object-src 'self'",
 	"permissions": [
 		"background",
 		"notifications",
+		"alarms",
 		"https://animereleasenotifier.com/",
 		"http://www.anime-planet.com/",
 		"http://anilist.co/",
