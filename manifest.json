@@ -6,11 +6,10 @@
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "https://animereleasenotifier.com/",
 	"icons": {
-		"16": "icons/icon16.png",
-		"32": "icons/icon32.png",
-		"48": "icons/icon48.png",
-		"64": "icons/icon64.png",
-		"128": "icons/icon128.png"
+		"16": "icons/icon-16.png",
+		"32": "icons/icon-32.png",
+		"64": "icons/icon-64.png",
+		"128": "icons/icon-128.png"
 	},
 	"background": {
 		"page": "html/background.html",
@@ -29,7 +28,7 @@
 		"http://myanimelist.net/"
 	],
 	"browser_action": {
-		"default_icon": "icons/icon128.png",
+		"default_icon": "icons/icon-118.png",
 		"default_popup": "html/anime.html"
 	}
 }
