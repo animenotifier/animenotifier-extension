@@ -87,4 +87,4 @@ var animeUpdater = {
 	getProfileUrl: function(userName) {
 		return 'https://animereleasenotifier.com/+' + userName;
 	}
-}
+};
