@@ -42,7 +42,7 @@ var animeUpdater = {
 			return;
 		}
 
-		$animeList = $("#anime-list");
+		var $animeList = $("#anime-list");
 		$animeList.html("<div class='loading'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
 
 		$.getJSON("https://animereleasenotifier.com/api/animelist/" + userName, function(json) {
