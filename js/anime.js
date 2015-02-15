@@ -13,7 +13,7 @@ var animeUpdater = {
 		var userName = this.settings["arnUserName"];
 
 		// Create footer
-		var footer = document.createElement("div");
+		var footer = document.createElement("footer");
 		footer.className = "footer";
 
 		$(footer).html(
@@ -43,9 +43,23 @@ var animeUpdater = {
 		}
 
 		var $animeList = $("#anime-list");
-		$animeList.html("<div class='loading'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
 
-		$.getJSON("https://animereleasenotifier.com/api/animelist/" + userName, function(json) {
+		// Loading animation if there is no cached view
+		if(!localStorage.htmlCache) {
+			$animeList.html("<div class='loading'><div class='rect1'></div><div class='rect2'></div><div class='rect3'></div><div class='rect4'></div><div class='rect5'></div></div>");
+		}
+
+		// Request JSON data
+		var jsonUrl = "https://animereleasenotifier.com/api/animelist/" + userName;
+
+		// If we already have a cached view we request a completely fresh copy to replace it with
+		if(localStorage.htmlCache)
+			jsonUrl += "&clearListCache=1";
+
+		// They see me rollin'
+		// They hatin'
+		$.getJSON(jsonUrl, function(json) {
+			// TODO: Max episode difference should be stored online
 			var animeList = new AnimeList(json, $animeList, parseInt(this.settings["maxEpisodeDifference"]), function(anime) {
 				// Notification options
 				var notificationOptions = {
@@ -70,7 +84,6 @@ var animeUpdater = {
 						notificationId: notificationId,
 						link: anime.actionUrl
 					});
-
 				});
 			});
 
@@ -81,9 +94,13 @@ var animeUpdater = {
 
 			// Footer
 			this.buildFooter(this.getProfileUrl(userName), animeList.listUrl);
+
+			// Cache
+			localStorage.htmlCache = $(document.body).html();
 		}.bind(this));
 	},
 
+	// Get profile URL
 	getProfileUrl: function(userName) {
 		return 'https://animereleasenotifier.com/+' + userName;
 	}
