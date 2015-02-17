@@ -45,4 +45,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	chrome.alarms.create("ARN Alarm", {
 		periodInMinutes: updateInterval
 	});
+
+	// Release notes
+	if(!localStorage.displayedReleaseNotesVersion || localStorage.displayedReleaseNotesVersion == 0) {
+		window.open("https://animereleasenotifier.com/");
+		localStorage.displayedReleaseNotesVersion = 1;
+	}
 });
