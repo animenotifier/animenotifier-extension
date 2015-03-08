@@ -2,12 +2,16 @@
 var settings = new Store("settings", {
 	"arnUserName": "",
 	"updateInterval": "10",
-	"maxEpisodeDifference": "1"
+	"maxEpisodeDifference": "1",
+	"clearListCache": true
 });
 
 // Background update fuction
 var backgroundUpdate = function() {
-	animeUpdater.onSettingsReceived(settings.toObject());
+	var options = settings.toObject();
+	options.clearListCache = false;
+
+	animeUpdater.onSettingsReceived(options);
 };
 
 // Send settings to the frontend
@@ -38,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Get update interval
 	var updateInterval = parseInt(settings.toObject()["updateInterval"]);
-	if(isNaN(updateInterval) || updateInterval < 1)
+	if(isNaN(updateInterval) || updateInterval < 10)
 		updateInterval = 10;
 
 	// Update consistently

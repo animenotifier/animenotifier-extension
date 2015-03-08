@@ -53,7 +53,7 @@ var animeUpdater = {
 		var jsonUrl = "https://animereleasenotifier.com/api/animelist/" + userName;
 
 		// If we already have a cached view we request a completely fresh copy to replace it with
-		if(localStorage.htmlCache)
+		if(this.settings.clearListCache && localStorage.htmlCache)
 			jsonUrl += "&clearListCache=1";
 
 		// They see me rollin'

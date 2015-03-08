@@ -1,7 +1,7 @@
 // SAMPLE
 this.manifest = {
 	"name": "Anime Release Notifier settings",
-	"icon": "/icons/icon32.png",
+	"icon": "/icons/icon-32.png",
 	"settings": [
 		{
 			"tab": i18n.get("Basic"),
@@ -26,7 +26,7 @@ this.manifest = {
 			"type": "slider",
 			"label": "Update interval:",
 			"max": 60,
-			"min": 1,
+			"min": 10,
 			"step": 1,
 			"display": true,
 			"displayModifier": function(value) {
