@@ -59,7 +59,7 @@ this.manifest = {
 			"group": "PayPal",
 			"name": "donate",
 			"type": "description",
-			"text": "<a href='http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DADU374FK8X2J' target='_blank'><img src='https://battleofmages.com/images/donate-paypal.png' alt='Donate'/></a>"
+			"text": "<a href='http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DADU374FK8X2J' target='_blank'><img src='https://animereleasenotifier.com/images/elements/donate-paypal.png' alt='Donate'/></a>"
 		},
 		{
 			"tab": i18n.get("Donations"),
