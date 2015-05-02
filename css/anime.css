@@ -4,7 +4,7 @@ body {
 	font-family: "Open Sans", "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 100%;
 	
-	min-width: calc(450px + 225px + 2em);
+	min-width: calc(520px + 225px + 2em);
 	min-height: calc(360px + 2em);
 
 	background-color: rgb(254, 254, 254);
@@ -58,6 +58,14 @@ body {
 
 	opacity: 1.0;
 	transition: opacity 290ms ease;
+}
+
+.title {
+	float: left;
+	max-width: 65%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 }
 
 .episodes {

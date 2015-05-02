@@ -1,7 +1,7 @@
 // SAMPLE
 this.manifest = {
 	"name": "Anime Release Notifier settings",
-	"icon": "/icons/icon-32.png",
+	"icon": "/icons/icon-256.png",
 	"settings": [
 		{
 			"tab": i18n.get("Basic"),
@@ -59,20 +59,63 @@ this.manifest = {
 			"group": "PayPal",
 			"name": "donate",
 			"type": "description",
-			"text": "<a href='http://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DADU374FK8X2J' target='_blank'><img src='https://animereleasenotifier.com/images/elements/donate-paypal.png' alt='Donate'/></a>"
+			"text": "<a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WVTG44E8KWFEL' target='_blank'><img src='https://animereleasenotifier.com/images/elements/donate-paypal.png' alt='Donate'/></a>"
 		},
 		{
 			"tab": i18n.get("Donations"),
 			"group": "Top donators",
 			"name": "donatorList",
 			"type": "description",
-			"text": "You'll be mentioned here if you support this project.<br/><br/><ul class='donators'>" + 
-					"<li><div class='donation-amount'>10,00 €</div> <a href='http://anilist.co/user/drill' target='_blank'>drill</a> (Anilist)</li>" + 
-					"<li><div class='donation-amount'>7,35 €</div> <a href='http://anilist.co/user/Izzy' target='_blank'>Izzy</a> (Anilist)</li>" + 
-					"<li><div class='donation-amount'>5,00 €</div> <a href='http://anilist.co/user/Josh' target='_blank'>Josh Star</a> (Anilist Admin)</li>" +
-					"<li><div class='donation-amount'>1,00 €</div> <a href='http://myanimelist.net/profile/Mr_SkiZZeX' target='_blank'>Mr_SkiZZeX</a> (MAL)</li>" +
-					"<li><div class='donation-amount'>1,00 €</div> <a href='http://myanimelist.net/profile/manolito62' target='_blank'>manolito62</a> (MAL)</li>" +
-					"</ul>"
+			"text": "<a href='https://animereleasenotifier.com/donate' target='_blank'>Full list of all the awesome people helping finance this</a>"
+		},
+		{
+			"tab": i18n.get("Feedback"),
+			"group": "Send feedback",
+			"name": "feedback",
+			"type": "description",
+			"text": "<a href='https://animereleasenotifier.com/feedback' target='_blank'>Send feedback directly to the developer</a>"
+		},
+		{
+			"tab": i18n.get("Roadmap"),
+			"group": "Roadmap",
+			"name": "roadmap",
+			"type": "description",
+			"text": "<a href='https://animereleasenotifier.com/roadmap' target='_blank'>List of planned features</a>"
+		},
+		{
+			"tab": i18n.get("Statistics"),
+			"group": "Statistics",
+			"name": "statistics",
+			"type": "description",
+			"text": "<a href='https://animereleasenotifier.com/statistics' target='_blank'>Anime lists and providers</a>"
+		},
+		{
+			"tab": i18n.get("Social"),
+			"group": "Facebook",
+			"name": "facebook",
+			"type": "description",
+			"text": "<a href='https://www.facebook.com/pages/Anime-Release-Notifier/1400941563536030' target='_blank'>ARN @ Facebook</a>"
+		},
+		{
+			"tab": i18n.get("Social"),
+			"group": "Twitter",
+			"name": "twitter",
+			"type": "description",
+			"text": "<a href='https://twitter.com/animenotifier' target='_blank'>ARN @ Twitter</a>"
+		},
+		{
+			"tab": i18n.get("Social"),
+			"group": "Google+",
+			"name": "googlePlus",
+			"type": "description",
+			"text": "<a href='https://www.google.com/+AnimeReleaseNotifierOfficial' target='_blank'>ARN @ Google+</a>"
+		},
+		{
+			"tab": i18n.get("Social"),
+			"group": "GitHub",
+			"name": "gitHub",
+			"type": "description",
+			"text": "<a href='https://github.com/freezingwind/animereleasenotifier.com' target='_blank'>ARN @ GitHub</a>"
 		}
 	],
 	"alignment": [

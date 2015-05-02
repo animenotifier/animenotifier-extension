@@ -2,6 +2,10 @@
 // Add your own style rules here, not in css/main.css
 // or css/setting.css for easy updating reasons.
 */
+a {
+	text-decoration: none;
+}
+
 .donators li {
 	font-size: 1.5em;
 	list-style-image: url(https://animereleasenotifier.com/images/icons/money.png);
