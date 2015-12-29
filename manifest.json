@@ -1,14 +1,15 @@
 {
 	"name": "Anime Release Notifier",
 	"short_name": "Anime Notifier",
-	"version": "1.0.4",
+	"version": "1.0.6",
 	"manifest_version": 2,
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "https://animereleasenotifier.com/",
 	"icons": {
 		"64": "icons/icon-64.png",
 		"128": "icons/icon-128.png",
-		"256": "icons/icon-256.png"
+		"256": "icons/icon-256.png",
+		"512": "icons/icon-512.png"
 	},
 	"background": {
 		"page": "html/background.html",

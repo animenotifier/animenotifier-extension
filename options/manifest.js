@@ -54,7 +54,7 @@ this.manifest = {
 			"type": "description",
 			"text": "The <strong>update interval</strong> indicates how often the updater will check for new releases. The <strong>max episode difference</strong> will tell the updater to only notify you when you're this many or less episodes behind the latest."
 		},
-		{
+		/*{
 			"tab": i18n.get("Donations"),
 			"group": "PayPal",
 			"name": "donate",
@@ -67,8 +67,8 @@ this.manifest = {
 			"name": "donatorList",
 			"type": "description",
 			"text": "<a href='https://animereleasenotifier.com/donate' target='_blank'>Full list of all the awesome people helping finance this</a>"
-		},
-		{
+		},*/
+		/*{
 			"tab": i18n.get("Feedback"),
 			"group": "Send feedback",
 			"name": "feedback",
@@ -88,7 +88,7 @@ this.manifest = {
 			"name": "statistics",
 			"type": "description",
 			"text": "<a href='https://animereleasenotifier.com/statistics' target='_blank'>Anime lists and providers</a>"
-		},
+		},*/
 		{
 			"tab": i18n.get("Social"),
 			"group": "Facebook",
@@ -115,7 +115,7 @@ this.manifest = {
 			"group": "GitHub",
 			"name": "gitHub",
 			"type": "description",
-			"text": "<a href='https://github.com/freezingwind/animereleasenotifier.com' target='_blank'>ARN @ GitHub</a>"
+			"text": "<a href='https://github.com/animenotifier/animereleasenotifier.com' target='_blank'>ARN @ GitHub</a>"
 		}
 	],
 	"alignment": [

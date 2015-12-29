@@ -2,7 +2,7 @@ var animeUpdater = {
 	settings: null,
 	optionsUrl: null,
 	notificationIdToLink: {},
-	
+
 	// Request anime list
 	requestAnimeList: function() {
 		chrome.runtime.sendMessage({intent: "getSettings"}, this.onSettingsReceived.bind(this));
@@ -21,8 +21,8 @@ var animeUpdater = {
 			"<a href='" + listUrl + "' target='_blank' title='Anime List'>Edit List</a>" +
 			" <a href='http://anichart.net/airing' target='_blank' title='Chart'><img src='https://animereleasenotifier.com/images/icons/chart.png' alt='Chart'/></a>" +
 			" <a href='" + this.optionsUrl + "' target='_blank' title='Options'><img src='https://animereleasenotifier.com/images/icons/settings.png' alt='Options'/></a>"
-		); 
-							
+		);
+
 		document.body.appendChild(footer);
 	},
 
@@ -102,6 +102,6 @@ var animeUpdater = {
 
 	// Get profile URL
 	getProfileUrl: function(userName) {
-		return 'https://animereleasenotifier.com/+' + userName;
+		return 'https://animereleasenotifier.com/profile/' + userName;
 	}
 };
