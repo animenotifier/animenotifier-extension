@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	// Release notes
 	if(!localStorage.displayedReleaseNotesVersion || localStorage.displayedReleaseNotesVersion == 0) {
-		window.open("https://animereleasenotifier.com/");
+		window.open("https://notify.moe/");
 		localStorage.displayedReleaseNotesVersion = 1;
 	}
 });

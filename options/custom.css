@@ -8,7 +8,7 @@ a {
 
 .donators li {
 	font-size: 1.5em;
-	list-style-image: url(https://animereleasenotifier.com/images/icons/money.png);
+	list-style-image: url(https://notify.moe/images/icons/money.png);
 	margin-left: 1em;
 }
 
@@ -27,7 +27,7 @@ a {
 }
 
 #arnUserName {
-	background-image: url(https://animereleasenotifier.com/images/icons/profile.png);
+	background-image: url(https://notify.moe/images/icons/profile.png);
 	background-repeat: no-repeat;
 	padding-left: 26px;
 	background-position: 5px center;

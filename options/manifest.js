@@ -10,7 +10,7 @@ this.manifest = {
 			"id": "arnUserName",
 			"type": "text",
 			"label": "Username:",
-			"text": "Your username on animereleasenotifier.com"
+			"text": "Your username on notify.moe"
 		},
 		{
 			"tab": i18n.get("Basic"),
@@ -59,35 +59,35 @@ this.manifest = {
 			"group": "PayPal",
 			"name": "donate",
 			"type": "description",
-			"text": "<a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WVTG44E8KWFEL' target='_blank'><img src='https://animereleasenotifier.com/images/elements/donate-paypal.png' alt='Donate'/></a>"
+			"text": "<a href='https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=WVTG44E8KWFEL' target='_blank'><img src='https://notify.moe/images/elements/donate-paypal.png' alt='Donate'/></a>"
 		},
 		{
 			"tab": i18n.get("Donations"),
 			"group": "Top donators",
 			"name": "donatorList",
 			"type": "description",
-			"text": "<a href='https://animereleasenotifier.com/donate' target='_blank'>Full list of all the awesome people helping finance this</a>"
+			"text": "<a href='https://notify.moe/donate' target='_blank'>Full list of all the awesome people helping finance this</a>"
 		},*/
 		/*{
 			"tab": i18n.get("Feedback"),
 			"group": "Send feedback",
 			"name": "feedback",
 			"type": "description",
-			"text": "<a href='https://animereleasenotifier.com/feedback' target='_blank'>Send feedback directly to the developer</a>"
+			"text": "<a href='https://notify.moe/feedback' target='_blank'>Send feedback directly to the developer</a>"
 		},
 		{
 			"tab": i18n.get("Roadmap"),
 			"group": "Roadmap",
 			"name": "roadmap",
 			"type": "description",
-			"text": "<a href='https://animereleasenotifier.com/roadmap' target='_blank'>List of planned features</a>"
+			"text": "<a href='https://notify.moe/roadmap' target='_blank'>List of planned features</a>"
 		},
 		{
 			"tab": i18n.get("Statistics"),
 			"group": "Statistics",
 			"name": "statistics",
 			"type": "description",
-			"text": "<a href='https://animereleasenotifier.com/statistics' target='_blank'>Anime lists and providers</a>"
+			"text": "<a href='https://notify.moe/statistics' target='_blank'>Anime lists and providers</a>"
 		},*/
 		{
 			"tab": i18n.get("Social"),
@@ -115,7 +115,7 @@ this.manifest = {
 			"group": "GitHub",
 			"name": "gitHub",
 			"type": "description",
-			"text": "<a href='https://github.com/animenotifier/animereleasenotifier.com' target='_blank'>ARN @ GitHub</a>"
+			"text": "<a href='https://github.com/animenotifier/notify.moe' target='_blank'>ARN @ GitHub</a>"
 		}
 	],
 	"alignment": [

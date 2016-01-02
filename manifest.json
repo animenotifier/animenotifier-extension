@@ -1,10 +1,10 @@
 {
 	"name": "Anime Release Notifier",
 	"short_name": "Anime Notifier",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"manifest_version": 2,
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
-	"homepage_url": "https://animereleasenotifier.com/",
+	"homepage_url": "https://notify.moe/",
 	"icons": {
 		"64": "icons/icon-64.png",
 		"128": "icons/icon-128.png",
@@ -16,12 +16,12 @@
 		"persistent": false
 	},
 	"options_page": "options/index.html",
-	"content_security_policy":"script-src 'self' https://animereleasenotifier.com; object-src 'self'",
+	"content_security_policy":"script-src 'self' https://notify.moe; object-src 'self'",
 	"permissions": [
 		"background",
 		"notifications",
 		"alarms",
-		"https://animereleasenotifier.com/",
+		"https://notify.moe/",
 		"http://www.anime-planet.com/",
 		"https://anilist.co/",
 		"https://static.hummingbird.me/",

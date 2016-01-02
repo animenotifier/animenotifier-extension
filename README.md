@@ -10,7 +10,7 @@ Supports anime lists from:
 - hummingbird.me
 
 Website:
-- https://animereleasenotifier.com/
+- https://notify.moe/
 
 Installation:
 - https://chrome.google.com/webstore/detail/anime-release-notifier/hajchfikckiofgilinkpifobdbiajfch
