@@ -54,7 +54,7 @@ var animeUpdater = {
 
 		// If we already have a cached view we request a completely fresh copy to replace it with
 		if(this.settings.clearListCache && localStorage.htmlCache)
-			jsonUrl += "&clearListCache=1";
+			jsonUrl += "/clearListCache";
 
 		// They see me rollin'
 		// They hatin'
@@ -102,6 +102,6 @@ var animeUpdater = {
 
 	// Get profile URL
 	getProfileUrl: function(userName) {
-		return 'https://animereleasenotifier.com/profile/' + userName;
+		return 'https://animereleasenotifier.com/+' + userName;
 	}
 };

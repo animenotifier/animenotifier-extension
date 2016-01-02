@@ -94,7 +94,7 @@ this.manifest = {
 			"group": "Facebook",
 			"name": "facebook",
 			"type": "description",
-			"text": "<a href='https://www.facebook.com/pages/Anime-Release-Notifier/1400941563536030' target='_blank'>ARN @ Facebook</a>"
+			"text": "<a href='https://www.facebook.com/animenotifier' target='_blank'>ARN @ Facebook</a>"
 		},
 		{
 			"tab": i18n.get("Social"),
