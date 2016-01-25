@@ -13,12 +13,12 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 		var cssClass = "anime";
 
 		// Action URL
-		anime.actionUrl = anime.url;
+		anime.actionUrl = 'https://notify.moe/anime/' + anime.id;
 
 		if(anime.animeProvider.url)
 			anime.actionUrl = anime.animeProvider.url;
 
-		if(anime.animeProvider.nextEpisode.url && anime.episodes.available >= anime.episodes.next)
+		if(anime.animeProvider.nextEpisode && anime.animeProvider.nextEpisode.url && anime.episodes.available >= anime.episodes.next)
 			anime.actionUrl = anime.animeProvider.nextEpisode.url;
 
 		//if(anime.animeProvider.videoUrl && typeof anime.animeProvider.videoHash != "undefined" && anime.animeProvider.videoHash != "" && typeof asp.wrap != "undefined")
