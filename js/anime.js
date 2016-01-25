@@ -64,7 +64,7 @@ var animeUpdater = {
 				// Notification options
 				var notificationOptions = {
 					type: "basic",
-					title: anime.title + " [Ep. " + anime.episodes.available + "]",
+					title: anime.title.romaji + " [Ep. " + anime.episodes.available + "]",
 					iconUrl: anime.image,
 					priority: 1,
 					message: "New episode available\n",
@@ -74,7 +74,7 @@ var animeUpdater = {
 				};
 
 				// Display notification
-				chrome.notifications.create("", notificationOptions, function(notificationId) {
+				/*chrome.notifications.create("", notificationOptions, function(notificationId) {
 					// When the notification is created we receive a notification ID.
 					// Store the link for that ID in a global map
 					animeUpdater.notificationIdToLink[notificationId] = anime.actionUrl;
@@ -84,7 +84,7 @@ var animeUpdater = {
 						notificationId: notificationId,
 						link: anime.actionUrl
 					});
-				});
+				});*/
 			});
 
 			// Set number next to extension icon

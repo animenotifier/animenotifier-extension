@@ -1,7 +1,7 @@
 {
 	"name": "Anime Release Notifier",
 	"short_name": "Anime Notifier",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"manifest_version": 2,
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "https://notify.moe/",
@@ -19,8 +19,6 @@
 	"content_security_policy":"script-src 'self' https://notify.moe; object-src 'self'",
 	"permissions": [
 		"background",
-		"notifications",
-		"alarms",
 		"https://notify.moe/",
 		"http://www.anime-planet.com/",
 		"https://anilist.co/",

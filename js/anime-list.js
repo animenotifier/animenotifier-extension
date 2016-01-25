@@ -18,8 +18,8 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 		if(anime.animeProvider.url)
 			anime.actionUrl = anime.animeProvider.url;
 
-		if(anime.animeProvider.nextEpisodeUrl && anime.episodes.available >= anime.episodes.next)
-			anime.actionUrl = anime.animeProvider.nextEpisodeUrl;
+		if(anime.animeProvider.nextEpisode.url && anime.episodes.available >= anime.episodes.next)
+			anime.actionUrl = anime.animeProvider.nextEpisode.url;
 
 		//if(anime.animeProvider.videoUrl && typeof anime.animeProvider.videoHash != "undefined" && anime.animeProvider.videoHash != "" && typeof asp.wrap != "undefined")
 		//	anime.animeProvider.videoUrl = asp.wrap(anime.animeProvider.videoHash);
@@ -48,7 +48,7 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 		var tooltip = "You watched " + anime.episodes.watched + " episodes out of " + available + " available (maximum: " + max + ")";
 
 		$animeList.append("<a href='" + anime.actionUrl.replace(/'/g, "%27") + "' target='_blank' class='" + cssClass + "' title='" + tooltip + "' itemscope itemtype='http://schema.org/ViewAction'>" +
-			'<span class="title">' + anime.title + '</span>' +
+			'<span class="title">' + anime.title.romaji + '</span>' +
 			(anime.airingDate.timeStamp != -1 ? ('<span class="release-time">' + anime.airingDate.remainingString + '</span>') : '') +
 			'<span class="episodes"><span class="watched-episode-number">' + (anime.episodes.watched != -1 ? anime.episodes.watched : '?') +
 			'</span> <span class="latest-episode-number">/ ' + available +
@@ -61,8 +61,8 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 
 		// Notifications
 		anime.sendNotification = function() {
-			var displayNotification = function() {
-				var notification = new Notification(anime.title, {
+			/*var displayNotification = function() {
+				var notification = new Notification(anime.title.romaji, {
 					body: "Episode " + anime.episodes.available + " released!",
 					icon: anime.image
 				});
@@ -81,12 +81,12 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 						displayNotification();
 					}
 				});
-			}
+			}*/
 		};
 
 		// Notification callback
 		if(notificationCallBack) {
-			var key = anime.title + ":episodes-available";
+			var key = anime.title.romaji + ":episodes-available";
 			var availableCached = parseInt(localStorage.getItem(key));
 
 			if(availableCached && anime.episodes.available > availableCached && availableCached != -1 && anime.episodes.available > anime.episodes.watched && anime.episodes.available <= anime.episodes.watched + maxEpisodeDifference) {

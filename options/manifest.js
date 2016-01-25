@@ -19,7 +19,7 @@ this.manifest = {
 			"type": "description",
 			"text": ""
 		},
-		{
+		/*{
 			"tab": i18n.get("Advanced"),
 			"group": "Notifier",
 			"name": "updateInterval",
@@ -53,6 +53,13 @@ this.manifest = {
 			"name": "maxEpisodeDifferenceDescription",
 			"type": "description",
 			"text": "The <strong>update interval</strong> indicates how often the updater will check for new releases. The <strong>max episode difference</strong> will tell the updater to only notify you when you're this many or less episodes behind the latest."
+		},*/
+		{
+			"tab": i18n.get("Notifications"),
+			"group": "Notifier",
+			"name": "notifierDescription",
+			"type": "description",
+			"text": "Since 25 January 2016 the outdated notification system is disabled. If you'd like to receive notifications please go to your <a href='https://notify.moe/settings' target='_blank'>settings</a> and activate the new push notifications."
 		},
 		/*{
 			"tab": i18n.get("Donations"),
@@ -121,10 +128,6 @@ this.manifest = {
 	"alignment": [
 		[
 			"arnUserName"
-		],
-		[
-			"updateInterval",
-			"maxEpisodeDifference"
 		]
 	]
 };

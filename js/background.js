@@ -8,10 +8,10 @@ var settings = new Store("settings", {
 
 // Background update fuction
 var backgroundUpdate = function() {
-	var options = settings.toObject();
+	/*var options = settings.toObject();
 	options.clearListCache = false;
 
-	animeUpdater.onSettingsReceived(options);
+	animeUpdater.onSettingsReceived(options);*/
 };
 
 // Send settings to the frontend
@@ -24,21 +24,21 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 });
 
 // Notification: Button click
-chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonId) {
+/*chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonId) {
 	if(buttonId === 0) {
 		var link = animeUpdater.notificationIdToLink[notificationId];
 		window.open(link);
 	}
-});
+});*/
 
-chrome.alarms.onAlarm.addListener(function (alarm) {
+/*chrome.alarms.onAlarm.addListener(function (alarm) {
 	console.log("Updating anime list in the background...");
 	backgroundUpdate();
-});
+});*/
 
 // Init
 document.addEventListener('DOMContentLoaded', function() {
-	backgroundUpdate();
+	/*backgroundUpdate();
 
 	// Get update interval
 	var updateInterval = parseInt(settings.toObject()["updateInterval"]);
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Update consistently
 	chrome.alarms.create("ARN Alarm", {
 		periodInMinutes: updateInterval
-	});
+	});*/
 
 	// Release notes
 	if(!localStorage.displayedReleaseNotesVersion || localStorage.displayedReleaseNotesVersion == 0) {
