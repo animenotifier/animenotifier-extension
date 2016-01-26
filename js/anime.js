@@ -64,7 +64,7 @@ var animeUpdater = {
 				// Notification options
 				var notificationOptions = {
 					type: "basic",
-					title: anime.title.romaji + " [Ep. " + anime.episodes.available + "]",
+					title: anime.preferredTitle + " [Ep. " + anime.episodes.available + "]",
 					iconUrl: anime.image,
 					priority: 1,
 					message: "New episode available\n",

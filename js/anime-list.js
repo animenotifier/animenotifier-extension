@@ -48,7 +48,7 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 		var tooltip = "You watched " + anime.episodes.watched + " episodes out of " + available + " available (maximum: " + max + ")";
 
 		$animeList.append("<a href='" + anime.actionUrl.replace(/'/g, "%27") + "' target='_blank' class='" + cssClass + "' title='" + tooltip + "' itemscope itemtype='http://schema.org/ViewAction'>" +
-			'<span class="title">' + anime.title.romaji + '</span>' +
+			'<span class="title">' + anime.preferredTitle + '</span>' +
 			(anime.airingDate.timeStamp != -1 ? ('<span class="release-time">' + anime.airingDate.remainingString + '</span>') : '') +
 			'<span class="episodes"><span class="watched-episode-number">' + (anime.episodes.watched != -1 ? anime.episodes.watched : '?') +
 			'</span> <span class="latest-episode-number">/ ' + available +
@@ -62,7 +62,7 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 		// Notifications
 		anime.sendNotification = function() {
 			/*var displayNotification = function() {
-				var notification = new Notification(anime.title.romaji, {
+				var notification = new Notification(anime.preferredTitle, {
 					body: "Episode " + anime.episodes.available + " released!",
 					icon: anime.image
 				});
@@ -86,7 +86,7 @@ function AnimeList(json, $animeList, maxEpisodeDifference, notificationCallBack)
 
 		// Notification callback
 		if(notificationCallBack) {
-			var key = anime.title.romaji + ":episodes-available";
+			var key = anime.preferredTitle + ":episodes-available";
 			var availableCached = parseInt(localStorage.getItem(key));
 
 			if(availableCached && anime.episodes.available > availableCached && availableCached != -1 && anime.episodes.available > anime.episodes.watched && anime.episodes.available <= anime.episodes.watched + maxEpisodeDifference) {
