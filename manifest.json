@@ -6,7 +6,6 @@
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "https://notify.moe/",
 	"options_page": "options.html",
-	"content_security_policy":"script-src 'self' https://notify.moe; object-src 'self'",
 	"icons": {
 		"64": "icons/icon-64.png",
 		"128": "icons/icon-128.png",
