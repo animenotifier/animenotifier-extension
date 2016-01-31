@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Chrome
-REPO="anime-release-notifier-chrome"
+REPO=`basename "$PWD"`
 cd ..
 zip -r $REPO/arn-chrome.zip $REPO -x *.git*
 cd $REPO
