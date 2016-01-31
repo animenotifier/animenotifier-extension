@@ -20,5 +20,11 @@
 	"browser_action": {
 		"default_icon": "icons/icon-64.png",
 		"default_popup": "popup.html"
+	},
+	"applications": {
+		"gecko": {
+			"id": "extension@notify.moe",
+			"strict_min_version": "44.0.0"
+		}
 	}
 }
