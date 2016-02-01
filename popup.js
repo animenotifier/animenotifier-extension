@@ -13,6 +13,21 @@ var loadContent = function() {
 };
 
 var init = function() {
+	window.onmessage = function(e) {
+		var msg = JSON.parse(e.data);
+		var browserAction = chrome.browserAction || browser.browserAction
+
+		if(msg && msg.newAnimeCount > 0) {
+			browserAction.setBadgeText({
+				text: msg.newAnimeCount.toString()
+			});
+		} else {
+			browserAction.setBadgeText({
+				text: ''
+			});
+		}
+	};
+
 	window.requestAnimationFrame(loadContent);
 };
 
