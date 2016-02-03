@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Delete old versions
+rm arn-chrome.zip
+rm arn-firefox.xpi
+
 # Chrome
 REPO=`basename "$PWD"`
 cd ..
