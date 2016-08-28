@@ -1,13 +1,12 @@
 {
 	"name": "Anime Release Notifier",
 	"short_name": "Anime Notifier",
-	"version": "2.0.3",
+	"version": "2.0.6",
 	"manifest_version": 2,
 	"description": "Notifies you when there's a new episode of your favourite anime available.",
 	"homepage_url": "https://notify.moe/",
 	"options_page": "options.html",
 	"offline_enabled": false,
-	"content_security_policy": "script-src 'self' https://notify.moe; object-src 'self'",
 	"icons": {
 		"64": "icons/icon-64.png",
 		"128": "icons/icon-128.png",
@@ -24,7 +23,7 @@
 	"applications": {
 		"gecko": {
 			"id": "extension@notify.moe",
-			"strict_min_version": "44.0.0"
+			"strict_min_version": "44.*"
 		}
 	}
 }

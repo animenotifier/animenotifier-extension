@@ -13,6 +13,8 @@ cd $REPO
 # Firefox
 mv manifest.json manifest-chrome.json
 cp manifest-firefox.json manifest.json
-zip -r arn-firefox.xpi ./ -x *.git* -x *.zip* -x *.xpi* -x *.sh -x manifest-*.json -x README.md -x LICENSE
+
+zip -r arn-firefox.xpi ./ -x *.git* -x *.zip* -x *.xpi* -x *.sh -x manifest-*.json -x README.md -x LICENSE 
+
 rm manifest.json
 mv manifest-chrome.json manifest.json
