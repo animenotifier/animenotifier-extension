@@ -3,7 +3,7 @@ var loadContent = function() {
 	frame.id = 'frame';
 	frame.frameBorder = '0';
 	frame.scrolling = 'no';
-	frame.src = 'https://notify.moe/+/watching/embedded';
+	frame.src = 'https://notify.moe/extension/embed';
 	document.body.appendChild(frame);
 
 	frame.onload = function() {
