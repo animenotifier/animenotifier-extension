@@ -1,26 +1,16 @@
 Anime Release Notifier
 ======================
 
-Fetches your anime "watching" list and notifies you when a new anime episode is available. It also displays the time until a new episode is released.
+Fetches your anime "watching" list and notifies you when a new anime episode is available.
 
-Supports anime lists from:
-- anime-planet.com
+Can import lists from:
+
 - anilist.co
+- kitsu.io
 - myanimelist.net
-- hummingbird.me
 
-Website:
-- https://notify.moe/
+To use this app you need to create an account on [notify.moe](https://notify.moe).
 
-Installation:
-- https://chrome.google.com/webstore/detail/anime-release-notifier/hajchfikckiofgilinkpifobdbiajfch
+On the Chrome store:
 
-Forum:
-- http://anilist.co/forum/thread/64
-- http://myanimelist.net/forum/?topicid=1175519
-- https://forums.hummingbird.me/t/16787
-
-Platforms:
-- [Android](https://github.com/blitzprog/anime-release-notifier-android)
-- [Chrome](https://github.com/blitzprog/anime-release-notifier-chrome)
-- [Firefox](https://github.com/blitzprog/anime-release-notifier-firefox)
+- https://chrome.google.com/webstore/detail/anime-notifier/hajchfikckiofgilinkpifobdbiajfch
